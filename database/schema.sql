@@ -65,3 +65,13 @@ CREATE TABLE IF NOT EXISTS expenses(
         REFERENCES expense_categories(id)
         ON DELETE CASCADE
 ); 
+
+CREATE TABLE IF NOT EXISTS saving_categories(
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER,
+    name VARCHAR(50),
+    CONSTRAINT fk_user
+        FOREIGN KEY(user_id)
+        REFERENCES users(id)
+        ON DELETE CASCADE
+);
