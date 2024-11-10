@@ -46,3 +46,22 @@ CREATE TABLE IF NOT EXISTS expense_categories(
         REFERENCES users(id)
         ON DELETE CASCADE
 );
+
+CREATE TABLE IF NOT EXISTS expenses(
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER NOT NULL,
+    expense_category_id INTEGER NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    amount NUMERIC(8,5) NOT NULL,
+    date DATE NOT NULL DEFAULT CURRENT_DATE,
+    time TIME NOT NULL DEFAULT CURRENT_TIME,
+    message TEXT NOT NULL,
+    CONSTRAINT fk_users
+        FOREIGN KEY(user_id)
+        REFERENCES users(id)
+        ON DELETE CASCADE,
+    CONSTRAINT fk_category
+        FOREIGN KEY(expense_category_id)
+        REFERENCES expense_categories(id)
+        ON DELETE CASCADE
+); 
