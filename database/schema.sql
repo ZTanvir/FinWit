@@ -35,4 +35,14 @@ CREATE TABLE IF NOT EXISTS incomes(
         FOREIGN KEY(income_category_id)
         REFERENCES income_categories(id)
         ON DELETE CASCADE
+); 
+
+CREATE TABLE IF NOT EXISTS expense_categories(
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER,
+    name VARCHAR(50),
+    CONSTRAINT fk_user
+        FOREIGN KEY(user_id)
+        REFERENCES users(id)
+        ON DELETE CASCADE
 );
