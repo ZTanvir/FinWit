@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS saving_categories(
         ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS saving(
+CREATE TABLE IF NOT EXISTS savings(
     id SERIAL PRIMARY KEY,
     user_id INTEGER NOT NULL,
     saving_category_id INTEGER NOT NULL,
@@ -94,3 +94,45 @@ CREATE TABLE IF NOT EXISTS saving(
         REFERENCES saving_categories(id)
         ON DELETE CASCADE
 ); 
+
+CREATE TABLE IF NOT EXISTS incomes_transactions(
+    id SERIAL PRIMARY KEY,
+    income_id int NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    type VARCHAR(20) NOT NULL,
+    amount NUMERIC(8,5) NOT NULL,
+    date DATE NOT NULL DEFAULT CURRENT_DATE,
+    time TIME NOT NULL DEFAULT CURRENT_TIME,
+    CONSTRAINT fk_income_id
+        FOREIGN KEY(income_id)
+        REFERENCES incomes(id)
+        ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS expenses_transactions(
+    id SERIAL PRIMARY KEY,
+    expense_id int NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    type VARCHAR(20) NOT NULL, 
+    amount NUMERIC(8,5) NOT NULL,
+    date DATE NOT NULL DEFAULT CURRENT_DATE,
+    time TIME NOT NULL DEFAULT CURRENT_TIME,
+    CONSTRAINT fk_expense_id
+        FOREIGN KEY(expense_id)
+        REFERENCES expenses(id)
+        ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS savings_transactions(
+    id SERIAL PRIMARY KEY,
+    saving_id int NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    type VARCHAR(20) NOT NULL, 
+    amount NUMERIC(8,5) NOT NULL,
+    date DATE NOT NULL DEFAULT CURRENT_DATE,
+    time TIME NOT NULL DEFAULT CURRENT_TIME,
+    CONSTRAINT fk_saving_id
+        FOREIGN KEY(saving_id)
+        REFERENCES savings(id)
+        ON DELETE CASCADE
+);
