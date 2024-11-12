@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS users(
     id SERIAL PRIMARY KEY,
     fullname VARCHAR(70) NOT NULL,
-    username VARCHAR(50) UNIQUE,
+    username VARCHAR(50) UNIQUE NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
     mobile_number VARCHAR(50) NOT NULL,
     birthday DATE NOT NULL,
@@ -10,8 +10,8 @@ CREATE TABLE IF NOT EXISTS users(
 
 CREATE TABLE IF NOT EXISTS income_categories(
     id SERIAL PRIMARY KEY,
-    user_id INTEGER,
-    name VARCHAR(50),
+    user_id INTEGER NOT NULL,
+    name VARCHAR(50) NOT NULL,
     CONSTRAINT fk_user
         FOREIGN KEY(user_id)
         REFERENCES users(id)
@@ -39,8 +39,8 @@ CREATE TABLE IF NOT EXISTS incomes(
 
 CREATE TABLE IF NOT EXISTS expense_categories(
     id SERIAL PRIMARY KEY,
-    user_id INTEGER,
-    name VARCHAR(50),
+    user_id INTEGER NOT NULL,
+    name VARCHAR(50) NOT NULL,
     CONSTRAINT fk_user
         FOREIGN KEY(user_id)
         REFERENCES users(id)
@@ -68,8 +68,8 @@ CREATE TABLE IF NOT EXISTS expenses(
 
 CREATE TABLE IF NOT EXISTS saving_categories(
     id SERIAL PRIMARY KEY,
-    user_id INTEGER,
-    name VARCHAR(50),
+    user_id INTEGER NOT NULL,
+    name VARCHAR(50) NOT NULL,
     CONSTRAINT fk_user
         FOREIGN KEY(user_id)
         REFERENCES users(id)
