@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS income_categories(
         ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS incomes(
+CREATE TABLE IF NOT EXISTS incomes( 
     id SERIAL PRIMARY KEY,
     user_id INTEGER NOT NULL,
     income_category_id INTEGER NOT NULL,
