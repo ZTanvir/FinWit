@@ -6,6 +6,6 @@ VALUES
         (SELECT id FROM users WHERE username='altaf'),
         (SELECT id FROM income_categories WHERE name='food'),
         'Food day',
-        100,
+        1000,
         'It was enjoyable and expensive :)'
     );
